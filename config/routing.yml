@@ -1,0 +1,26 @@
+td_image:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                tdImage
+    module:               td_image
+    prefix_path:          /td_image
+    column:               id
+    with_wildcard_routes: true
+
+td_image_album:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                tdImageAlbum
+    module:               td_image_album
+    prefix_path:          /td_image_album
+    column:               id
+    with_wildcard_routes: true
+
+td_watermark:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                tdWatermark
+    module:               td_watermark
+    prefix_path:          /td_watermark
+    column:               id
+    with_wildcard_routes: true

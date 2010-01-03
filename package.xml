@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+  <name>tdVisualFactoryPlugin</name>
+  <channel>plugins.symfony-project.org</channel>
+  <summary>Provides funcionalities for easy images upload with additional features</summary>
+  <description>Provides funcionalities for uploading pictures into separate albums using additional features, such as configurable multiple sizes, watermarks, etc. This plugin is a part of TD CMS and is based on Doctrine ORM.</description>
+ <lead>
+  <name>Tomasz Ducin</name>
+  <user>tkoomzaaskz</user>
+  <email>tomasz.ducin@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-01-03</date>
+ <time>11:00:00</time>
+ <version>
+   <release>0.1.0</release>
+   <api>0.1.0</api>
+ </version>
+ <stability>
+ <release>beta</release>
+ <api>beta</api>
+ </stability>
+  <license uri="http://www.symfony-project.com/license">MIT</license>
+  <notes>-</notes>
+
+ <contents>
+   <dir name="/">
+
+     <dir name="config">
+       <dir name="doctrine">
+         <file name="schema.yml" role="data" />
+       </dir>
+       <file name="routing.yml" role="data" />
+       <file name="tdVisualFactoryPluginConfiguration.class.php" role="data" />
+     </dir>
+
+     <dir name="lib">
+       <dir name="filter">
+         <dir name="doctrine">
+           <file name="PlugintdImageAlbumFormFilter.class.php" role="data" />
+           <file name="PlugintdImageFormFilter.class.php" role="data" />
+           <file name="PlugintdWatermarkFormFilter.class.php" role="data" />
+         </dir>
+       </dir>
+       <dir name="form">
+         <dir name="doctrine">
+           <file name="PlugintdImageAlbumForm.class.php" role="data" />
+           <file name="PlugintdImageForm.class.php" role="data" />
+           <file name="PlugintdWatermarkForm.class.php" role="data" />
+         </dir>
+       </dir>
+       <dir name="model">
+         <dir name="doctrine">
+           <file name="PlugintdImageAlbum.class.php" role="data" />
+           <file name="PlugintdImageAlbumTable.class.php" role="data" />
+           <file name="PlugintdImage.class.php" role="data" />
+           <file name="PlugintdImageTable.class.php" role="data" />
+           <file name="PlugintdWatermark.class.php" role="data" />
+           <file name="PlugintdWatermarkTable.class.php" role="data" />
+         </dir>
+       </dir>
+     </dir>
+
+     <dir name="modules">
+       <dir name="td_image">
+         <dir name="actions">
+           <file name="actions.class.php" role="data" />
+         </dir>
+         <dir name="config">
+           <file name="generator.yml" role="data" />
+         </dir>
+         <dir name="i18n">
+           <file name="sf_admin.pl.xml" role="data" />
+         </dir>
+         <dir name="lib">
+           <file name="td_imageGeneratorConfiguration.class.php" role="data" />
+           <file name="td_imageGeneratorHelper.class.php" role="data" />
+         </dir>
+         <dir name="templates" />
+       </dir>
+       <dir name="td_image_album">
+         <dir name="actions">
+           <file name="actions.class.php" role="data" />
+         </dir>
+         <dir name="config">
+           <file name="generator.yml" role="data" />
+         </dir>
+         <dir name="i18n">
+           <file name="sf_admin.pl.xml" role="data" />
+         </dir>
+         <dir name="lib">
+           <file name="td_image_albumGeneratorConfiguration.class.php" role="data" />
+           <file name="td_image_albumGeneratorHelper.class.php" role="data" />
+         </dir>
+         <dir name="templates" />
+       </dir>
+       <dir name="td_watermark">
+         <dir name="actions">
+           <file name="actions.class.php" role="data" />
+         </dir>
+         <dir name="config">
+           <file name="generator.yml" role="data" />
+         </dir>
+         <dir name="i18n">
+           <file name="sf_admin.pl.xml" role="data" />
+         </dir>
+         <dir name="lib">
+           <file name="td_watermarkGeneratorConfiguration.class.php" role="data" />
+           <file name="td_watermarkGeneratorHelper.class.php" role="data" />
+         </dir>
+         <dir name="templates" />
+       </dir>
+     </dir>
+
+     <dir name="web">
+       <dir name="css">
+         <file name="admin_watermark.css" role="data" />
+       </dir>
+     </dir>
+
+     <file name="LICENSE" role="data" />
+     <file name="README" role="data" />
+   </dir>
+ </contents>
+
+  <dependencies>
+   <required>
+    <php>
+     <min>5.1.0</min>
+    </php>
+    <pearinstaller>
+     <min>1.4.1</min>
+    </pearinstaller>
+    <package>
+     <name>symfony</name>
+     <channel>pear.symfony-project.com</channel>
+     <min>1.3.0</min>
+     <max>1.5.0</max>
+     <exclude>1.5.0</exclude>
+    </package>
+   </required>
+  </dependencies>
+
+  <phprelease>
+  </phprelease>
+
+  <changelog>
+
+   <release>
+    <version>
+     <release>0.1.0</release>
+     <api>0.1.0</api>
+    </version>
+    <stability>
+     <release>beta</release>
+     <api>beta</api>
+    </stability>
+    <license uri="http://www.symfony-project.org/license">MIT license</license>
+    <date>2010-01-03</date>
+    <license>MIT</license>
+    <notes>
+     * initial import
+    </notes>
+   </release>
+
+  </changelog>
+
+</package>

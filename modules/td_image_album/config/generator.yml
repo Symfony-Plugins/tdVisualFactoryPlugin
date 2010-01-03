@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           tdImageAlbum
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          td_image_album
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    css:                   nothing
+    i18n_catalogue:        sf_admin
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: List of albums
+      filter:  ~
+      form:    ~
+      edit:
+        title: Edit album
+      new:
+        title: New album

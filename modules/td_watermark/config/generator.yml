@@ -1,0 +1,39 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           tdWatermark
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          td_watermark
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    css:                   nothing
+    i18n_catalogue:        sf_admin
+
+    config:
+      actions: ~
+      fields:
+        file_md5:
+          label: Plik
+        title:
+          label: Nazwa
+        description:
+          label: Opis
+      list:
+        title: List of watermarks
+        display: [ title, description, updated_at ]
+      filter:
+        display: [ description, created_at, updated_at ]
+      form:
+        fields:
+          title:
+            attributes: { size: 80 }
+          description:
+            attributes: { cols: 80, rows: 3 }
+      edit:
+        title: Edit watermark
+      new:
+        title: New watermark

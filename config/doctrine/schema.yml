@@ -1,0 +1,63 @@
+tdImage:
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  actAs:
+    Timestampable: ~
+  columns:
+    td_image_album_id:
+      type: integer
+      notnull: true
+    file_md5:
+      type: string(255)
+      notnull: true
+    title:
+      type: string(64)
+      notnull: true
+    description:
+      type: clob
+  relations:
+    Album:
+      class: tdImageAlbum
+      local: td_image_album_id
+      foreign: id
+      foreignAlias: Images
+
+tdImageAlbum:
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  actAs:
+    Timestampable: ~
+  columns:
+    td_watermark_id:
+      type: integer
+      notnull: true
+    name:
+      type: string
+      notnull: true
+    description:
+      type: string
+      notnull: true
+  relations:
+    Watermark:
+      class: tdWatermark
+      local: td_watermark_id
+      foreign: id
+      foreignAlias: Albums
+
+tdWatermark:
+  options:
+    charset: utf8
+    collate: utf8_general_ci
+  actAs:
+    Timestampable: ~
+  columns:
+    file_md5:
+      type: string(255)
+      notnull: true
+    title:
+      type: string(64)
+      notnull: true
+    description:
+      type: clob

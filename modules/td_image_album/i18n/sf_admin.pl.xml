@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" datatype="plaintext">
+    <header />
+    <body>
+      <!-- Actions -->
+      <trans-unit>
+        <source>New album</source>
+        <target>Nowy album</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Edit album</source>
+        <target>Edytuj album</target>
+      </trans-unit>
+      <trans-unit>
+        <source>List of albums</source>
+        <target>Lista albumów</target>
+      </trans-unit>
+
+      <!-- Fields -->
+      <trans-unit>
+        <source>Created at</source>
+        <target>Utworzono</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Updated at</source>
+        <target>Zmodyfikowano</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

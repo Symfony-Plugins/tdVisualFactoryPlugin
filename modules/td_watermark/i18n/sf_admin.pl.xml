@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
+<xliff version="1.0">
+  <file original="global" source-language="en" datatype="plaintext">
+    <header />
+    <body>
+      <!-- Actions -->
+      <trans-unit>
+        <source>New watermark</source>
+        <target>Nowy watermark</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Edit watermark</source>
+        <target>Edytuj watermark</target>
+      </trans-unit>
+      <trans-unit>
+        <source>List of watermarks</source>
+        <target>Lista watermarków</target>
+      </trans-unit>
+
+      <!-- Fields -->
+      <trans-unit>
+        <source>File path</source>
+        <target>Ścieżka do pliku</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Description</source>
+        <target>Opis</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Created at</source>
+        <target>Utworzono</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Updated at</source>
+        <target>Zmodyfikowano</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

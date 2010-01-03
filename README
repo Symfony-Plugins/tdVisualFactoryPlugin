@@ -1,0 +1,33 @@
+tdVisualFactoryPlugin
+=====================
+
+Provides funcionalities for uploading pictures into separate albums using
+additional features, such as configurable multiple sizes, watermarks, etc.
+
+This plugin is a part of __TD CMS__ and is based on __Doctrine ORM__.
+
+Installation
+============
+
+Install the plugin via the subversion repository by executing the following
+command from the project root directory:
+
+    $ svn co http://svn.symfony-project.com/plugins/tdVisualFactoryPlugin/trunk plugins/tdVisualFactoryPlugin
+
+or by using the default symfony plugin install command:
+
+    $ ./symfony plugin:install tdVisualFactoryPlugin
+
+Usage
+=====
+
+
+
+Dependencies
+============
+
+At least one of the following graphics libraries:
+
+  * [GD](http://en.wikipedia.org/wiki/GD_Graphics_Library)
+
+  * [imagick](http://php.net/manual/en/book.imagick.php)
