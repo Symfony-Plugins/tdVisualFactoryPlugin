@@ -10,4 +10,15 @@
  */
 abstract class PlugintdImageFormFilter extends BasetdImageFormFilter
 {
+  public function setup()
+  {
+    parent::setup();
+
+    $this->removeFields();
+  }
+
+  protected function removeFields()
+  {
+    unset( $this['file'] );
+  }
 }

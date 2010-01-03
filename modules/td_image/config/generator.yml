@@ -10,12 +10,34 @@ generator:
     route_prefix:          td_image
     with_doctrine_route:   true
     actions_base_class:    sfActions
+    css:                   nothing
+    i18n_catalogue:        sf_admin
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        td_image_album_id:
+          label: Album
+        file:
+          label: Plik
+        name:
+          label: Nazwa zdjęcia
+        description:
+          label: Opis
+        created_at:
+          label: Utworzono
+        updated_at:
+          label: Zmieniono
+      list:
+        title: List of images
       filter:  ~
-      form:    ~
-      edit:    ~
-      new:     ~
+      form:
+        fields:
+          name:
+            attributes: { size: 80 }
+          description:
+            attributes: { cols: 80, rows: 3 }
+      edit:
+        title: Edit image
+      new:
+        title: New image

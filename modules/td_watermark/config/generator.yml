@@ -16,20 +16,19 @@ generator:
     config:
       actions: ~
       fields:
-        file_md5:
+        file:
           label: Plik
-        title:
+        name:
           label: Nazwa
         description:
           label: Opis
       list:
         title: List of watermarks
-        display: [ title, description, updated_at ]
-      filter:
-        display: [ description, created_at, updated_at ]
+        display: [ name, description, updated_at ]
+      filter: ~
       form:
         fields:
-          title:
+          name:
             attributes: { size: 80 }
           description:
             attributes: { cols: 80, rows: 3 }

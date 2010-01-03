@@ -28,27 +28,23 @@ abstract class PlugintdWatermarkForm extends BasetdWatermarkForm
 
   protected function manageWidgets()
   {
-    $this->setWidget('file_md5', new sfWidgetFormInputFileEditable(array(
-      'with_delete' => true,
-      'delete_label' => 'delete watermark image',
+    $this->setWidget('file', new sfWidgetFormInputFileEditable(array(
+      'with_delete' => false,
+      'delete_label' => 'usuń zdjęcie watermarka',
       'label'     => 'Watermark image',
-      'file_src'  => '/uploads/watermarks/'.$this->getObject()->getFileMd5(),
+      'file_src'  => '/uploads/watermarks/'.$this->getObject()->getFile(),
       'is_image'  => true,
       'edit_mode' => !$this->isNew(),
       'template'  => '<div class="admin-watermark">%file%<br />%input%<br />%delete% %delete_label%</div>',
     )));
-
-//    $this->setWidget(array(
-//      'upload' => new sfWidgetFormInputSWFUpload()
-//    ));
   }
 
   protected function manageValidators()
   {
-    $this->setValidator('title',
+    $this->setValidator('name',
       new sfValidatorString(array(), array('required' => 'Musisz podać nazwę watermarka.')));
 
-    $this->setValidator('file_md5', new sfValidatorFile(array(
+    $this->setValidator('file', new sfValidatorFile(array(
       'required'   => true,
       'path'       => sfConfig::get('td_visual_factory_watermark_dir'),
       'mime_types' => 'web_images',

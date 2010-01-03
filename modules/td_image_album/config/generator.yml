@@ -15,11 +15,22 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        td_watermark_id:
+          label: Watermark
+        name:
+          label: Nazwa
+        description:
+          label: Opis
       list:
         title: List of albums
       filter:  ~
-      form:    ~
+      form:
+        fields:
+          name:
+            attributes: { size: 80 }
+          description:
+            attributes: { cols: 80, rows: 10 }
       edit:
         title: Edit album
       new:

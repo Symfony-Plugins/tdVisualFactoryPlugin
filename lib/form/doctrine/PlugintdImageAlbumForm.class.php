@@ -10,4 +10,26 @@
  */
 abstract class PlugintdImageAlbumForm extends BasetdImageAlbumForm
 {
+  public function setup()
+  {
+    parent::setup();
+
+    $this->removeFields();
+
+    $this->manageValidators();
+  }
+
+  protected function removeFields()
+  {
+    unset($this['created_at'], $this['updated_at']);
+  }
+
+  protected function manageValidators()
+  {
+    $this->setValidator('name',
+      new sfValidatorString(array(), array('required' => 'Musisz podać nazwę albumu.')));
+
+    $this->setValidator('description',
+      new sfValidatorString(array(), array('required' => 'Musisz podać opis albumu.')));
+  }
 }

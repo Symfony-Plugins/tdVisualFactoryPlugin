@@ -8,10 +8,10 @@ tdImage:
     td_image_album_id:
       type: integer
       notnull: true
-    file_md5:
+    file:
       type: string(255)
       notnull: true
-    title:
+    name:
       type: string(64)
       notnull: true
     description:
@@ -34,7 +34,7 @@ tdImageAlbum:
       type: integer
       notnull: true
     name:
-      type: string
+      type: string(255)
       notnull: true
     description:
       type: string
@@ -53,10 +53,10 @@ tdWatermark:
   actAs:
     Timestampable: ~
   columns:
-    file_md5:
+    file:
       type: string(255)
       notnull: true
-    title:
+    name:
       type: string(64)
       notnull: true
     description:

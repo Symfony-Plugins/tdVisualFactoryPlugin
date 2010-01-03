@@ -10,4 +10,15 @@
  */
 abstract class PlugintdWatermarkFormFilter extends BasetdWatermarkFormFilter
 {
+  public function setup()
+  {
+    parent::setup();
+
+    $this->removeFields();
+  }
+
+  protected function removeFields()
+  {
+    unset( $this['file'] );
+  }
 }

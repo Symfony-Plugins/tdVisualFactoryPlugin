@@ -1,0 +1,3 @@
+all:
+  td_visual_factory:
+    td_visual_factory_image_dir_relative: /uploads/images
