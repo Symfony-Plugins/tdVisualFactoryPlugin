@@ -17,10 +17,10 @@ class tdVisualFactoryPluginConfiguration extends sfPluginConfiguration
    */
   public function initialize()
   {
-    // number of days for visitor counter statistics
+    // watermark upload dir
     sfConfig::set('td_visual_factory_watermark_dir', sfConfig::get('sf_upload_dir').'/watermarks');
 
-    // number of days for visitor counter statistics
+    // image upload dir
     sfConfig::set('td_visual_factory_image_dir', sfConfig::get('sf_upload_dir').'/images');
   }
 }

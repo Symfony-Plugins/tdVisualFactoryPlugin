@@ -32,7 +32,7 @@ abstract class PlugintdImageForm extends BasetdImageForm
       'with_delete' => false,
       'delete_label' => 'usuń plik zdjęcie',
       'label'     => 'Watermark image',
-      'file_src'  => '/uploads/images/'.$this->getObject()->getFileMd5(),
+      'file_src'  => '/uploads/images/'.$this->getObject()->getFile(),
       'is_image'  => true,
       'edit_mode' => !$this->isNew(),
       'template'  => '%file%<br />%input%<br />%delete% %delete_label%',

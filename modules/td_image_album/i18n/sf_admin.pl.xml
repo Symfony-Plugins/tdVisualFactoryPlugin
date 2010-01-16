@@ -6,16 +6,16 @@
     <body>
       <!-- Actions -->
       <trans-unit>
-        <source>New album</source>
-        <target>Nowy album</target>
+        <source>New image album</source>
+        <target>Nowy album zdjęć</target>
       </trans-unit>
       <trans-unit>
-        <source>Edit album</source>
-        <target>Edytuj album</target>
+        <source>Edit image album</source>
+        <target>Edytuj album zdjęć</target>
       </trans-unit>
       <trans-unit>
-        <source>List of albums</source>
-        <target>Lista albumów</target>
+        <source>List of image albums</source>
+        <target>Lista albumów zdjęć</target>
       </trans-unit>
 
       <!-- Fields -->

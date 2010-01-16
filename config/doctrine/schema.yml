@@ -1,7 +1,8 @@
+options:
+  charset: utf8
+  collate: utf8_general_ci
+
 tdImage:
-  options:
-    charset: utf8
-    collate: utf8_general_ci
   actAs:
     Timestampable: ~
   columns:
@@ -24,9 +25,6 @@ tdImage:
       foreignAlias: Images
 
 tdImageAlbum:
-  options:
-    charset: utf8
-    collate: utf8_general_ci
   actAs:
     Timestampable: ~
   columns:
@@ -47,9 +45,6 @@ tdImageAlbum:
       foreignAlias: Albums
 
 tdWatermark:
-  options:
-    charset: utf8
-    collate: utf8_general_ci
   actAs:
     Timestampable: ~
   columns:

@@ -23,7 +23,7 @@ generator:
         description:
           label: Opis
       list:
-        title: List of albums
+        title: List of image albums
       filter:  ~
       form:
         fields:
@@ -32,6 +32,6 @@ generator:
           description:
             attributes: { cols: 80, rows: 10 }
       edit:
-        title: Edit album
+        title: Edit image album
       new:
-        title: New album
+        title: New image album
