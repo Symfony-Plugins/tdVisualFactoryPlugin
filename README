@@ -21,7 +21,16 @@ or by using the default symfony plugin install command:
 Usage
 =====
 
+  * You shall redefine the configuration __td_visual_factory_sizes__ array and
+    define custom sizes of uploaded images. Each uploaded image will be stored
+    in the original format and all defined custom sizes.
 
+  * After defining custom image sizes, you shall create directories storing
+    those specific size images (in the default upload directory, which is
+    __uploads/td/images/__
+
+  * The first of all custom image sizes is used as the thumbnail size in admin
+    generator (image album editing with image list)
 
 Dependencies
 ============

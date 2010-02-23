@@ -22,8 +22,30 @@ generator:
           label: Nazwa
         description:
           label: Opis
+        active:
+          label: Aktywna
+# embedded forms and relations
+        Images:
+          label: Zdjęcia
+        new:
+          label: Nowe zdjęcia
       list:
-        title: List of image albums
+        title: List of galleries
+        layout: stacked
+        params: |
+          <img src="/uploads/td/watermarks/%%file%%" />
+          <br />
+          <strong>Nazwa</strong>: <i>%%name%%</i> %%active%%
+          <br />
+          <strong>Autor</strong>: <i>%%author%%</i>
+          <br />
+          <strong>Wydano</strong>: <i>%%released_at%%</i>
+          <br />
+          <strong>Opis</strong>: <div class="text_box">%%description_short%%</div>
+          <br />
+          <strong>Utworzono</strong>: <i>%%created_at%%</i>
+          <br />
+          <strong>Zmieniono</strong>: <i>%%updated_at%%</i>
       filter:  ~
       form:
         fields:
@@ -32,6 +54,7 @@ generator:
           description:
             attributes: { cols: 80, rows: 10 }
       edit:
-        title: Edit image album
+        title: Edit gallery
+        display: [ name, description, active, Images, new ]
       new:
-        title: New image album
+        title: New gallery

@@ -4,28 +4,29 @@
   <file original="global" source-language="en" datatype="plaintext">
     <header />
     <body>
-      <!-- Actions -->
       <trans-unit>
-        <source>New gallery</source>
-        <target>Nowa galeria</target>
+        <source>Gallery</source>
+        <target>Galeria zdjęć</target>
       </trans-unit>
       <trans-unit>
-        <source>Edit gallery</source>
-        <target>Edytuj galerię</target>
-      </trans-unit>
-      <trans-unit>
-        <source>List of galleries</source>
+        <source>Gallery list</source>
         <target>Lista galerii</target>
       </trans-unit>
-
-      <!-- Fields -->
+      <trans-unit>
+        <source>watch it</source>
+        <target>obejrzyj</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Name</source>
+        <target>Nazwa</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Description</source>
+        <target>Opis</target>
+      </trans-unit>
       <trans-unit>
         <source>Created at</source>
         <target>Utworzono</target>
-      </trans-unit>
-      <trans-unit>
-        <source>Updated at</source>
-        <target>Zmodyfikowano</target>
       </trans-unit>
     </body>
   </file>

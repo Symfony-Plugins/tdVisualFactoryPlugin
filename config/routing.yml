@@ -1,3 +1,11 @@
+td_sample_image:
+  url:   /image
+  param: { module: tdSampleImage, action: index }
+
+td_sample_image_show:
+  url:   /image/:id
+  param: { module: tdSampleImage, action: show }
+
 td_image:
   class: sfDoctrineRouteCollection
   options:

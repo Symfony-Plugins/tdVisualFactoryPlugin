@@ -12,5 +12,13 @@
  */
 abstract class PlugintdWatermark extends BasetdWatermark
 {
-
+  /**
+   * Returns short description of the watermark.
+   *
+   * @return String - short description.
+   */
+  public function getDescriptionShort()
+  {
+    return tdTools::getMbShortenedString($this->getDescription(), sfConfig::get('td_visual_factory_short_text_sign_count'));
+  }
 }

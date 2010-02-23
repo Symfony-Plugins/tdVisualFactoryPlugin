@@ -25,6 +25,17 @@ generator:
       list:
         title: List of watermarks
         display: [ name, description, updated_at ]
+        layout: stacked
+        params: |
+          <img src="/uploads/td/watermarks/%%file%%" />
+          <br />
+          <strong>Nazwa</strong>: <i>%%name%%</i>
+          <br />
+          <strong>Opis</strong>: <div class="text_box">%%description_short%%</div>
+          <br />
+          <strong>Utworzono</strong>: <i>%%created_at%%</i>
+          <br />
+          <strong>Zmieniono</strong>: <i>%%updated_at%%</i>
       filter: ~
       form:
         fields:

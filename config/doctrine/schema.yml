@@ -17,6 +17,10 @@ tdImage:
       notnull: true
     description:
       type: clob
+    horizontal:
+      type: boolean
+      notnull: true
+      default: true
   relations:
     Album:
       class: tdImageAlbum
@@ -30,13 +34,16 @@ tdImageAlbum:
   columns:
     td_watermark_id:
       type: integer
-      notnull: true
     name:
       type: string(255)
       notnull: true
     description:
       type: string
       notnull: true
+    active:
+      type: boolean
+      notnull: true
+      default: true
   relations:
     Watermark:
       class: tdWatermark

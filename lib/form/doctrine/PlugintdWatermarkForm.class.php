@@ -13,12 +13,11 @@ abstract class PlugintdWatermarkForm extends BasetdWatermarkForm
   public function setup()
   {
     parent::setup();
-
     $this->removeFields();
+    $this->manageFiles();
 
-    $this->manageWidgets();
-
-    $this->manageValidators();
+    $this->setValidator('name',
+      new sfValidatorString(array(), array('required' => 'Musisz podać nazwę watermarka.')));
   }
 
   protected function removeFields()
@@ -26,23 +25,17 @@ abstract class PlugintdWatermarkForm extends BasetdWatermarkForm
     unset($this['created_at'], $this['updated_at']);
   }
 
-  protected function manageWidgets()
+  protected function manageFiles()
   {
     $this->setWidget('file', new sfWidgetFormInputFileEditable(array(
       'with_delete' => false,
       'delete_label' => 'usuń zdjęcie watermarka',
       'label'     => 'Watermark image',
-      'file_src'  => '/uploads/watermarks/'.$this->getObject()->getFile(),
+      'file_src'  => '/uploads/td/watermarks/'.$this->getObject()->getFile(),
       'is_image'  => true,
       'edit_mode' => !$this->isNew(),
       'template'  => '<div class="admin-watermark">%file%<br />%input%<br />%delete% %delete_label%</div>',
     )));
-  }
-
-  protected function manageValidators()
-  {
-    $this->setValidator('name',
-      new sfValidatorString(array(), array('required' => 'Musisz podać nazwę watermarka.')));
 
     $this->setValidator('file', new sfValidatorFile(array(
       'required'   => true,

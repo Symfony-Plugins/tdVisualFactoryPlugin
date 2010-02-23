@@ -1,0 +1,2 @@
+default:
+  javascripts:    [ /tdVisualFactoryPlugin/js/prototype.js, '/tdVisualFactoryPlugin/js/scriptaculous.js?load=effects,builder', /tdVisualFactoryPlugin/js/lightbox.js ]

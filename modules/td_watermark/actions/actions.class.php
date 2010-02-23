@@ -13,4 +13,9 @@ require_once dirname(__FILE__).'/../lib/td_watermarkGeneratorHelper.class.php';
  */
 class td_watermarkActions extends autoTd_watermarkActions
 {
+  public function postExecute()
+  {
+    parent::postExecute();
+    $this->getResponse()->addStylesheet('/tdVisualFactoryPlugin/css/td_image.css');
+  }
 }
