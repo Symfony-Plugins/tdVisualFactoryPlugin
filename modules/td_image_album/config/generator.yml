@@ -27,6 +27,7 @@ generator:
 # embedded forms and relations
         Images:
           label: Zdjęcia
+          help: Aby zmienić zdjęcie należy je najpierw USUNĄĆ a następnie DODAĆ na nowo (nie pzesyłać nowego pliku dla już istniejącego zdjęcia)
         new:
           label: Nowe zdjęcia
       list:

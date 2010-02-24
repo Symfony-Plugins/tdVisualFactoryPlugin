@@ -27,10 +27,43 @@ Usage
 
   * After defining custom image sizes, you shall create directories storing
     those specific size images (in the default upload directory, which is
-    __uploads/td/images/__
+    __uploads/td/images/__ and make sure those directories have permissions to
+    write new files in.
 
   * The first of all custom image sizes is used as the thumbnail size in admin
-    generator (image album editing with image list)
+    generator (image album editing with image list).
+
+Configuration
+=============
+
+You can modify settings of the tdVisualFactoryPlugin in the
+__config/tdVisualFactoryPluginConfiguration.class.php__ file:
+
+  * _td_visual_factory_watermark_dir_ - (String) upload dir of all watermark
+    images,
+
+  * _td_visual_factory_image_dir_ - (String) upload dir of all images,
+
+  * _td_visual_factory_sizes_ - (Array) all image sizes (not counting
+    the original uploaded file),
+
+  * _td_visual_factory_watermark_sizes_ - (Array) all image sizes (they have to
+    be included in the _td_visual_factory_sizes_ array) that shall be
+    watermarked,
+
+  * _td_visual_factory_watermark_prefix_ - (String) prefix for intermediate
+    watermarked image creation files. By default it's 'tmp-', so if the file
+    1ba05c.jpg represents resized and watermarked image, then tmp-1ba05c.jpg is
+    the same image: after resizing, but before putting the watermark on it,
+
+  * _td_visual_factory_size_thumbnail_ - (String) the size used on the frontend
+    within lightbox widget - as the thumbnail,
+
+  * _td_visual_factory_size_full_ - (String) the size used on the frontend
+    within lightbox widget - as the zoomed, full size image,
+
+  * _td_visual_factory_mode_ - (String) external library use within the Visual
+    Factory, can be either _gd_ (GD) or _im_ (Imagick).
 
 Dependencies
 ============

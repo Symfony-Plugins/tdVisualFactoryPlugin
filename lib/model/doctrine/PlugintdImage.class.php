@@ -82,32 +82,6 @@ abstract class PlugintdImage extends BasetdImage
     }
   }
 
-  public function preUpdate($event)
-  {
-//      var_dump($this->isNew());
-//    if (! $this->isNew())
-//    {
-//      $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
-//      foreach(sfConfig::get('td_visual_factory_sizes') as $size)
-//      {
-//        unlink($sf_upload_dir.'/'.$size.'/'.$this->getFile());
-//      }
-//    }
-  }
-
-  public function postUpdate($event)
-  {
-//    $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
-//    foreach(sfConfig::get('td_visual_factory_sizes') as $size)
-//    {
-//      VisualFactory::Resize(
-//        sfConfig::get('td_visual_factory_mode'),
-//        $sf_upload_dir.'/'.$this->getFile(),
-//        $sf_upload_dir.'/'.$size.'/'.$this->getFile(),
-//        $size);
-//    }
-  }
-
   /**
    * Delete all image versions
    *
