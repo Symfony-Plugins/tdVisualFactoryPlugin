@@ -33,13 +33,7 @@ generator:
         title: List of galleries
         layout: stacked
         params: |
-          <img src="/uploads/td/watermarks/%%file%%" />
-          <br />
           <strong>Nazwa</strong>: <i>%%name%%</i> %%active%%
-          <br />
-          <strong>Autor</strong>: <i>%%author%%</i>
-          <br />
-          <strong>Wydano</strong>: <i>%%released_at%%</i>
           <br />
           <strong>Opis</strong>: <div class="text_box">%%description_short%%</div>
           <br />

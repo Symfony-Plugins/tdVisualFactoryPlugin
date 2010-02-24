@@ -12,5 +12,13 @@
  */
 abstract class PlugintdImageAlbum extends BasetdImageAlbum
 {
-
+  /**
+   * Returns short description of the image album.
+   *
+   * @return String - short description.
+   */
+  public function getDescriptionShort()
+  {
+    return tdTools::getMbShortenedString($this->getDescription(), sfConfig::get('td_short_text_sign_count'));
+  }
 }

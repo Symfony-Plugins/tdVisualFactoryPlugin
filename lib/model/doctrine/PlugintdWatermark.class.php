@@ -19,6 +19,6 @@ abstract class PlugintdWatermark extends BasetdWatermark
    */
   public function getDescriptionShort()
   {
-    return tdTools::getMbShortenedString($this->getDescription(), sfConfig::get('td_visual_factory_short_text_sign_count'));
+    return tdTools::getMbShortenedString($this->getDescription(), sfConfig::get('td_short_text_sign_count'));
   }
 }

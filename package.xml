@@ -10,7 +10,7 @@
   <email>tomasz.ducin@gmail.com</email>
   <active>yes</active>
  </lead>
- <date>2010-01-03</date>
+ <date>2010-02-24</date>
  <time>11:00:00</time>
  <version>
    <release>0.1.0</release>
@@ -59,24 +59,26 @@
            <file name="PlugintdWatermarkTable.class.php" role="data" />
          </dir>
        </dir>
+       <dir name="vendor">
+         <file name="VisualFactory.class.php" role="data" />
+       </dir>
      </dir>
 
      <dir name="modules">
-       <dir name="td_image">
+       <dir name="tdSampleImage">
          <dir name="actions">
            <file name="actions.class.php" role="data" />
          </dir>
          <dir name="config">
-           <file name="generator.yml" role="data" />
+           <file name="view.yml" role="data" />
          </dir>
          <dir name="i18n">
-           <file name="sf_admin.pl.xml" role="data" />
+           <file name="td.pl.xml" role="data" />
          </dir>
-         <dir name="lib">
-           <file name="td_imageGeneratorConfiguration.class.php" role="data" />
-           <file name="td_imageGeneratorHelper.class.php" role="data" />
+         <dir name="templates">
+           <file name="indexSuccess.php" role="data" />
+           <file name="showSuccess.php" role="data" />
          </dir>
-         <dir name="templates" />
        </dir>
        <dir name="td_image_album">
          <dir name="actions">
@@ -114,7 +116,25 @@
 
      <dir name="web">
        <dir name="css">
-         <file name="admin_watermark.css" role="data" />
+         <file name="lightbox.css" role="data" />
+         <file name="td_image.css" role="data" />
+       </dir>
+       <dir name="images">
+         <file name="bullet.gif" role="data" />
+         <file name="close.gif" role="data" />
+         <file name="closelabel.gif" role="data" />
+         <file name="left.jpeg" role="data" />
+         <file name="loading.gif" role="data" />
+         <file name="nextlabel.gif" role="data" />
+         <file name="prevlabel.gif" role="data" />
+         <file name="right.jpeg" role="data" />
+       </dir>
+       <dir name="js">
+         <file name="builder.js" role="data" />
+         <file name="effects.js" role="data" />
+         <file name="lightbox.js" role="data" />
+         <file name="prototype.js" role="data" />
+         <file name="scriptaculous.js" role="data" />
        </dir>
      </dir>
 
@@ -138,6 +158,12 @@
      <max>1.5.0</max>
      <exclude>1.5.0</exclude>
     </package>
+    <package>
+     <name>tdCorePlugin</name>
+     <channel>plugins.symfony-project.org</channel>
+     <min>0.1.9</min>
+    </package>
+
    </required>
   </dependencies>
 

@@ -12,6 +12,16 @@
  */
 abstract class PlugintdImage extends BasetdImage
 {
+  protected function setOrientation()
+  {
+    $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
+    $file = $sf_upload_dir.'/'.$this->getFile();
+
+//    var_dump($file, $this); exit;
+  }
+
+/*============================================================================*/
+
   public function postSave($event)
   {
     $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
@@ -34,8 +44,14 @@ abstract class PlugintdImage extends BasetdImage
     }
   }
 
-//  public function preUpdate($event)
-//  { // nie działa...
+  public function preInsert($event)
+  {
+    $this->setOrientation();
+  }
+
+  public function preUpdate($event)
+  {
+    $this->setOrientation();
 //      var_dump($this->isNew());
 //    if (! $this->isNew())
 //    {
@@ -45,7 +61,7 @@ abstract class PlugintdImage extends BasetdImage
 //        unlink($sf_upload_dir.'/'.$size.'/'.$this->getFile());
 //      }
 //    }
-//  }
+  }
 
   public function postUpdate($event)
   {

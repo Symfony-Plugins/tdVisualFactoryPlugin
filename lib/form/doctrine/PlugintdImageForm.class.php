@@ -26,6 +26,7 @@ abstract class PlugintdImageForm extends BasetdImageForm
   protected function removeFields()
   {
     unset($this['created_at'], $this['updated_at']);
+    unset($this['horizontal']);
   }
 
   protected function manageHidden()
@@ -72,19 +73,4 @@ abstract class PlugintdImageForm extends BasetdImageForm
       'delete'      => 'Usuń',
     ));
   }
-
-//  protected function doSave($con = null)
-//  {
-//    if (file_exists($this->getObject()->getFile()))
-//    {
-//      unlink($this->getObject()->getFile());
-//    }
-//    var_dump($this); exit;
-//
-//    $file = $this->getValue('file');
-//    $filename = sha1($file->getOriginalName()).'.dupa'.$file->getExtension($file->getOriginalExtension());
-//    $file->save(sfConfig::get('sf_upload_dir').'/'.$filename);
-//
-//    return parent::doSave($con);
-//  }
 }

@@ -1,4 +1,0 @@
-all:
-  td_visual_factory:
-    mode: im # im (imagemagick) or gd
-    image_dir_relative: /uploads/images

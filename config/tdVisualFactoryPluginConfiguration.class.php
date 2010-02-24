@@ -34,8 +34,5 @@ class tdVisualFactoryPluginConfiguration extends sfPluginConfiguration
 
     // visual mode
     sfConfig::set('td_visual_factory_mode', 'gd');
-
-    // short description sign count
-    sfConfig::set('td_visual_factory_short_text_sign_count', 200);
   }
 }

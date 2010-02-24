@@ -1,39 +1,95 @@
 <?php
 
 /**
+ * Visual Factory
  *
+ * Class performing basic image transforming operations using GD and Imagick
+ * libraries.
+ *
+ * @package    VisualFactory
+ * @author     Tomasz Ducin <tomasz.ducin@gmail.com>
  */
 class VisualFactory
 {
+  /**
+   * Reads image from the filepath given by the parameter using gd built-in
+   * functions.
+   *
+   * @param String $filepath
+   * @return resource an image resource identifier on success, false on errors.
+   */
+  protected static function imageCreateFrom($filepath)
+  {
+    // file extension
+    $path_arr = explode('.', $filepath);
+    $ext = $path_arr[count($path_arr)-1];
+
+    // reading image
+    switch(strtolower($ext))
+    {
+      case 'jpg': case 'jpeg':
+        $image = imagecreatefromjpeg($filepath);
+        break;
+      case 'gif':
+        $image = imagecreatefromgif($filepath);
+        break;
+      case 'bmp': case 'wbmp':
+        $image = imagecreatefromwbmp($filepath);
+        break;
+      case 'png':
+        $image = imagecreatefrompng($filepath);
+        break;
+      default:
+        throw new Exception('nieznany rodzaj pliku graficznego '.strtolower($ext).': '.$filepath);
+    }
+    return $image;
+  }
+
+  /**
+   * Writes image to the filepath given by the parameter using gd built-in
+   * functions.
+   *
+   * @param resource an image resource identifier on success, false on errors.
+   * @param String $filepath
+   */
+  protected static function imagePut($image, $filepath)
+  {
+    // file extension
+    $path_arr = explode('.', $filepath);
+    $ext = $path_arr[count($path_arr)-1];
+
+    // reading image
+    switch(strtolower($ext))
+    {
+      case 'jpg': case 'jpeg':
+        imagejpeg($image, $filepath);
+        break;
+      case 'gif':
+        imagegif($image, $filepath);
+        break;
+      case 'bmp': case 'wbmp':
+        imagewbmp($image, $filepath);
+        break;
+      case 'png':
+        imagepng($image, $filepath);
+        break;
+      default:
+        throw new Exception('nieznany rodzaj pliku graficznego '.strtolower($ext).': '.$filepath);
+    }
+  }
+
  /**
+  * Performs WATERMARK operation using GD library.
   *
-  *
-  * @param <type> $wm_file
-  * @param <type> $in_file
-  * @param <type> $out_file
+  * @param String $wm_file - watermark file path
+  * @param String $in_file - input file path
+  * @param String $out_file - output file path
   */
-  public static function putWatermark($wm_file, $in_file, $out_file)
+  protected static function putWatermark($wm_file, $in_file, $out_file)
   {
     $watermark = imagecreatefrompng($wm_file);
 
-    $in_ext = explode('.', $in_file);
-    switch(strtolower($in_ext[count($in_ext)-1]))
-    {
-      case 'jpg': case 'jpeg':
-        $image = imagecreatefromjpeg($in_file);
-        break;
-      case 'gif':
-        $image = imagecreatefromgif($in_file);
-        break;
-      case 'bmp': case 'wbmp':
-        $image = imagecreatefromwbmp($in_file);
-        break;
-      case 'png':
-        $image = imagecreatefrompng($in_file);
-        break;
-      default:
-        throw new Exception('nieznany rodzaj pliku graficznego');
-    }
+    $image = self::imageCreateFrom($in_file);
 
     $margin_right = 5;
     $margin_bottom = 5;
@@ -48,59 +104,25 @@ class VisualFactory
       $wm_sx, $wm_sy // cały watermark bierzesz
     );
 
-    $out_ext = explode('.', $out_file);
-    switch(strtolower($out_ext[count($out_ext)-1]))
-    {
-      case 'jpg': case 'jpeg':
-        imagejpeg($image, $out_file);
-        break;
-      case 'gif':
-        imagegif($image, $out_file);
-        break;
-      case 'bmp': case 'wbmp':
-        imagewbmp($image, $out_file);
-        break;
-      case 'png':
-        imagepng($image, $out_file);
-        break;
-      default:
-        throw new Exception('nieznany rodzaj pliku graficznego');
-    }
+    self::imagePut($image, $out_file);
 
     imagedestroy($image);
     imagedestroy($watermark);
   }
 
  /**
-  * 
+  * Performs RESIZE operation using GD library.
   *
-  * @param <type> $in_file
-  * @param <type> $out_file
-  * @param <type> $new_width
-  * @param <type> $new_height
+  * @param String $in_file - input file path
+  * @param String $out_file - output file path
+  * @param Integer $new_width - new width value of the output image
+  * @param Integer $new_height - new height value of the output image
   */
-  public static function putResized($in_file, $out_file, $new_width, $new_height)
+  protected static function putResized($in_file, $out_file, $new_width, $new_height)
   {
     $destination = imagecreatetruecolor($new_width, $new_height);
 
-    $in_ext = explode('.', $in_file);
-    switch(strtolower($in_ext[count($in_ext)-1]))
-    {
-      case 'jpg': case 'jpeg':
-        $source = imagecreatefromjpeg($in_file);
-        break;
-      case 'gif':
-        $source = imagecreatefromgif($in_file);
-        break;
-      case 'bmp': case 'wbmp':
-        $source = imagecreatefromwbmp($in_file);
-        break;
-      case 'png':
-        $source = imagecreatefrompng($in_file);
-        break;
-      default:
-        throw new Exception('nieznany rodzaj pliku graficznego: '.strtolower($in_ext[1]).' '.$in_file);
-    }
+    $image = self::imageCreateFrom($in_file);
 
     $src_width = imagesx($source);
     $src_height = imagesy($source);
@@ -134,34 +156,20 @@ class VisualFactory
       $fin_width, $fin_height
     );
 
-    $out_ext = explode('.', $out_file);
-    switch(strtolower($out_ext[count($out_ext)-1]))
-    {
-      case 'jpg': case 'jpeg':
-        imagejpeg($destination, $out_file);
-        break;
-      case 'gif':
-        imagegif($destination, $out_file);
-        break;
-      case 'bmp': case 'wbmp':
-        imagewbmp($destination, $out_file);
-        break;
-      case 'png':
-        imagepng($destination, $out_file);
-        break;
-      default:
-        throw new Exception('nieznany rodzaj pliku graficznego');
-    }
+    self::imagePut($destination, $out_file);
+
+    imagedestroy($image);
   }
 
-/*==========================================================================*/
+/*============================================================================*/
+/*============================ Imagick library ===============================*/
 
  /**
+  * Performs RESIZE operation on given input and output files using GD library.
   *
-  *
-  * @param <type> $in_file
-  * @param <type> $out_file
-  * @param <type> $format
+  * @param String $in_file - input file path
+  * @param String $out_file - output file path
+  * @param String $format - output file format, e. g. '800x600'
   */
   protected static function ImageMagickResize($in_file, $out_file, $format)
   {
@@ -175,13 +183,14 @@ class VisualFactory
   }
 
  /**
+  * Performs WATERMARK operation on given input, output and watermark files
+  * using Imagick library.
   *
-  *
-  * @param <type> $wm_file
-  * @param <type> $in_file
-  * @param <type> $mid_file
-  * @param <type> $out_file
-  * @param <type> $format
+  * @param String $wm_file - watermark file path
+  * @param String $in_file - input file path
+  * @param String $mid_file - auxiliary file path (created after resize and used to put a watermark on)
+  * @param String $out_file - output file path
+  * @param String $format - output file format, e. g. '800x600'
   */
   protected static function ImageMagickWatermark($wm_file, $in_file, $mid_file, $out_file, $format)
   {
@@ -203,46 +212,50 @@ class VisualFactory
     shell_exec($command_composite);
   }
 
-/*==========================================================================*/
+/*============================================================================*/
+/*============================ GD library ====================================*/
 
  /**
+  * Performs RESIZE operation on given input and output files using GD library.
   *
-  *
-  * @param <type> $in_file
-  * @param <type> $out_file
-  * @param <type> $format
+  * @param String $in_file - input file path
+  * @param String $out_file - output file path
+  * @param String $format - output file format, e. g. '800x600'
   */
   protected static function GDResize($in_file, $out_file, $format)
   {
     $f = explode('x', $format);
-    VisualFactory::putResized($in_file, $out_file, $f[0], $f[1]);
+    self::putResized($in_file, $out_file, $f[0], $f[1]);
   }
 
  /**
+  * Performs WATERMARK operation on given input, output and watermark files
+  * using GD library.
   *
-  *
-  * @param <type> $wm_file
-  * @param <type> $in_file
-  * @param <type> $mid_file
-  * @param <type> $out_file
-  * @param <type> $format
+  * @param String $wm_file - watermark file path
+  * @param String $in_file - input file path
+  * @param String $mid_file - auxiliary file path (created after resize and used to put a watermark on)
+  * @param String $out_file - output file path
+  * @param String $format - output file format, e. g. '800x600'
   */
   protected static function GDWatermark($wm_file, $in_file, $mid_file, $out_file, $format)
   {
     $f = explode('x', $format);
-    VisualFactory::putResized($in_file, $mid_file, $f[0], $f[1]);
-    VisualFactory::putWatermark($wm_file, $mid_file, $out_file);
+    self::putResized($in_file, $mid_file, $f[0], $f[1]);
+    self::putWatermark($wm_file, $mid_file, $out_file);
   }
 
-/*==========================================================================*/
+/*============================================================================*/
+/*================================ interface =================================*/
 
  /**
+  * Performs RESIZE operation on given input and output files with library mode
+  * specified ('mode' parameter with value either 'gd' or 'im').
   *
-  *
-  * @param <type> $mode
-  * @param <type> $in_file
-  * @param <type> $out_file
-  * @param <type> $format
+  * @param String $mode - external library mode - either 'gd' or 'im'
+  * @param String $in_file - input file path
+  * @param String $out_file - output file path
+  * @param String $format - output file format, e. g. '800x600'
   */
   public static function Resize($mode, $in_file, $out_file, $format)
   {
@@ -258,14 +271,16 @@ class VisualFactory
   }
 
  /**
+  * Performs WATERMARK operation on given input, output and watermark files
+  * with library mode specified ('mode' parameter with value either 'gd' or
+  * 'im').
   *
-  *
-  * @param <type> $mode
-  * @param <type> $wm_file
-  * @param <type> $in_file
-  * @param <type> $mid_file
-  * @param <type> $out_file
-  * @param <type> $format
+  * @param String $mode - external library mode - either 'gd' or 'im'
+  * @param String $wm_file - watermark file path
+  * @param String $in_file - input file path
+  * @param String $mid_file - auxiliary file path (created after resize andused to put a watermark on)
+  * @param String $out_file - output file path
+  * @param String $format - output file format, e. g. '800x600'
   */
   public static function Watermark($mode, $wm_file, $in_file, $mid_file, $out_file, $format)
   {
