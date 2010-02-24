@@ -4,7 +4,7 @@ tdVisualFactoryPlugin
 Provides funcionalities for uploading pictures into separate albums using
 additional features, such as configurable multiple sizes, watermarks, etc.
 
-This plugin is a part of __TD CMS__ and is based on __Doctrine ORM__.
+This plugin is a part of __TD CMF__ and is based on __Doctrine ORM__.
 
 Installation
 ============
