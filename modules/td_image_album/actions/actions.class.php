@@ -13,4 +13,70 @@ require_once dirname(__FILE__).'/../lib/td_image_albumGeneratorHelper.class.php'
  */
 class td_image_albumActions extends autoTd_image_albumActions
 {
+  /**
+   * Activates selected track albums.
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeBatchActivate(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+    $query = Doctrine::getTable('tdImageAlbum')->getSelectedAlbumsQuery($ids);
+
+    foreach ($query->execute() as $album)
+    {
+      $album->activate(true);
+    }
+
+    $this->getUser()->setFlash('notice', 'The selected image albums have been activated successfully.');
+    $this->redirect('@td_image_album');
+  }
+
+  /**
+   * Deactivates selected track albums.
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeBatchDeactivate(sfWebRequest $request)
+  {
+    $ids = $request->getParameter('ids');
+    $query = Doctrine::getTable('tdImageAlbum')->getSelectedAlbumsQuery($ids);
+
+    foreach ($query->execute() as $album)
+    {
+      $album->deactivate(true);
+    }
+
+    $this->getUser()->setFlash('notice', 'The selected image albums have been deactivated successfully.');
+    $this->redirect('@td_image_album');
+  }
+
+  /**
+   * Activates selected track album.
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeListActivate(sfWebRequest $request)
+  {
+    $album = $this->getRoute()->getObject();
+    $album->activate();
+
+    $this->getUser()->setFlash('notice', 'The selected image album has been activated successfully.');
+    $this->redirect('@td_image_album');
+  }
+
+  /**
+   * Deactivates selected track album.
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeListDeactivate(sfWebRequest $request)
+  {
+    $album = $this->getRoute()->getObject();
+    $album->deactivate();
+
+    $this->getUser()->setFlash('notice', 'The selected image album has been deactivated successfully.');
+
+    $this->redirect('@td_image_album');
+  }
 }

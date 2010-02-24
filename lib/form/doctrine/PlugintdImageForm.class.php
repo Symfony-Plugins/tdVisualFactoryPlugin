@@ -26,7 +26,6 @@ abstract class PlugintdImageForm extends BasetdImageForm
   protected function removeFields()
   {
     unset($this['created_at'], $this['updated_at']);
-    unset($this['horizontal']);
   }
 
   protected function manageHidden()
@@ -43,6 +42,17 @@ abstract class PlugintdImageForm extends BasetdImageForm
     }
   }
 
+  protected function renderLinks()
+  {
+    $filepath = $this->getObject()->getFile();
+    $links = array();
+    foreach(sfConfig::get('td_visual_factory_sizes') as $size)
+    {
+      $links[] = "<a href='/uploads/td/images/{$size}/{$filepath}'>{$size}</a>";
+    }
+    return implode(', ', $links);
+  }
+
   protected function manageFiles()
   {
     $thumb = sfConfig::get('td_visual_factory_size_thumbnail');
@@ -52,7 +62,7 @@ abstract class PlugintdImageForm extends BasetdImageForm
       'file_src'  => '/uploads/td/images/'.$thumb.'/'.$this->getObject()->getFile(),
       'is_image'  => true,
       'edit_mode' => !$this->isNew(),
-      'template'  => '%file%<br />%input%<br />%delete% %delete_label%',
+      'template'  => '%file%<br />'.$this->renderLinks().'<br />%input%',
     )));
 
     $this->setValidator('file', new sfValidatorFile(array(

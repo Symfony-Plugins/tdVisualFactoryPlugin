@@ -21,4 +21,39 @@ abstract class PlugintdImageAlbum extends BasetdImageAlbum
   {
     return tdTools::getMbShortenedString($this->getDescription(), sfConfig::get('td_short_text_sign_count'));
   }
+
+  /**
+   * Activates the image album.
+   *
+   * @return True
+   */
+  public function activate()
+  {
+    $this->setActive(true);
+    $this->save();
+    return true;
+  }
+
+  /**
+   * Deactivates the image album.
+   *
+   * @return True
+   */
+  public function deactivate()
+  {
+    $this->setActive(false);
+    $this->save();
+    return true;
+  }
+
+  /**
+   * Deletes all image records before the whole image album is deleted.
+   *
+   * @param Doctrine_Event $event
+   */
+  public function preDelete($event)
+  {
+    foreach($this->getImages() as $image)
+      $image->delete();
+  }
 }

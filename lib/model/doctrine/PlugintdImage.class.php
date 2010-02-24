@@ -12,46 +12,78 @@
  */
 abstract class PlugintdImage extends BasetdImage
 {
-  protected function setOrientation()
+/*=========================== image files transitions ========================*/
+
+  /**
+   * Creates watermarked image for a given size and watermark object.
+   *
+   * @param String $size - resized image size
+   * @param tdWatermark $watermark - watermark object
+   */
+  protected function createWatermarked($size, $watermark)
   {
     $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
-    $file = $sf_upload_dir.'/'.$this->getFile();
-
-//    var_dump($file, $this); exit;
+    $prefix = sfConfig::get('td_visual_factory_watermark_prefix');
+    
+    VisualFactory::Watermark(
+      sfConfig::get('td_visual_factory_mode'),
+      $sf_upload_dir.'/'.$this->getFile(),
+      $sf_upload_dir.'/'.$size.'/'.$prefix.$this->getFile(),
+      $sf_upload_dir.'/'.$size.'/'.$this->getFile(),
+      $size,
+      sfConfig::get('td_visual_factory_watermark_dir').'/'.$watermark->getFile());
   }
 
-/*============================================================================*/
-
-  public function postSave($event)
+  /**
+   * Creates resized image for a given size.
+   *
+   * @param String $size - resized image size
+   */
+  protected function createResized($size)
   {
     $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
-    foreach(sfConfig::get('td_visual_factory_sizes') as $size)
-    {
-      VisualFactory::Resize(
-        sfConfig::get('td_visual_factory_mode'),
-        $sf_upload_dir.'/'.$this->getFile(),
-        $sf_upload_dir.'/'.$size.'/'.$this->getFile(),
-        $size);
+    VisualFactory::Resize(
+      sfConfig::get('td_visual_factory_mode'),
+      $sf_upload_dir.'/'.$this->getFile(),
+      $sf_upload_dir.'/'.$size.'/'.$this->getFile(),
+      $size);
+  }
+
+/*================== Doctrine_Record pre/post modifications ==================*/
+
+  /**
+   * Create all image versions, depending on watermark used for the album or not.
+   *
+   * @param Doctrine_Event $event
+   */
+  public function postInsert($event)
+  {
+    $all_sizes = sfConfig::get('td_visual_factory_sizes');
+    $album = $this->getAlbum();
+    $watermark_id = $album->gettdWatermarkId();
+
+    if ($watermark_id)
+    { // album has a watermark set - some sizes watermarked, some sizes resized
+      $watermark = $album->getWatermark();
+
+      $watermark_sizes = sfConfig::get('td_visual_factory_watermark_sizes');
+      $normal_sizes = array_diff($all_sizes, $watermark_sizes);
+
+      foreach($watermark_sizes as $size)
+        $this->createWatermarked($size, $watermark);
+
+      foreach($normal_sizes as $size)
+        $this->createResized($size);
     }
-  }
-
-  public function postDelete($event)
-  {
-    $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
-    foreach(sfConfig::get('td_visual_factory_sizes') as $size)
-    {
-      unlink($sf_upload_dir.'/'.$size.'/'.$this->getFile());
+    else
+    { // no watermark i set for the album - all sizes resized
+      foreach($all_sizes as $size)
+        $this->createResized($size);
     }
-  }
-
-  public function preInsert($event)
-  {
-    $this->setOrientation();
   }
 
   public function preUpdate($event)
   {
-    $this->setOrientation();
 //      var_dump($this->isNew());
 //    if (! $this->isNew())
 //    {
@@ -65,14 +97,41 @@ abstract class PlugintdImage extends BasetdImage
 
   public function postUpdate($event)
   {
+//    $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
+//    foreach(sfConfig::get('td_visual_factory_sizes') as $size)
+//    {
+//      VisualFactory::Resize(
+//        sfConfig::get('td_visual_factory_mode'),
+//        $sf_upload_dir.'/'.$this->getFile(),
+//        $sf_upload_dir.'/'.$size.'/'.$this->getFile(),
+//        $size);
+//    }
+  }
+
+  /**
+   * Delete all image versions
+   *
+   * @param Doctrine_Event $event
+   */
+  public function postDelete($event)
+  {
     $sf_upload_dir = sfConfig::get('td_visual_factory_image_dir');
+    unlink($sf_upload_dir.'/'.$this->getFile());
+
     foreach(sfConfig::get('td_visual_factory_sizes') as $size)
     {
-      VisualFactory::Resize(
-        sfConfig::get('td_visual_factory_mode'),
-        $sf_upload_dir.'/'.$this->getFile(),
-        $sf_upload_dir.'/'.$size.'/'.$this->getFile(),
-        $size);
+      unlink($sf_upload_dir.'/'.$size.'/'.$this->getFile());
+    }
+
+    // check if temporary watermark images shall be deleted
+    $watermark = $this->getAlbum()->getWatermark();
+    if ($watermark)
+    { // album has a watermark set - some sizes watermarked, some sizes resized
+      $prefix = sfConfig::get('td_visual_factory_watermark_prefix');
+      $watermark_sizes = sfConfig::get('td_visual_factory_watermark_sizes');
+
+      foreach($watermark_sizes as $size)
+        unlink($sf_upload_dir.'/'.$size.'/'.$prefix.$this->getFile());
     }
   }
 }

@@ -31,6 +31,15 @@ generator:
           label: Nowe zdjęcia
       list:
         title: List of galleries
+        batch_actions:
+          _delete: ~
+          activate: ~
+          deactivate: ~
+        object_actions:
+          _edit: ~
+          _delete: ~
+          activate: ~
+          deactivate: ~
         layout: stacked
         params: |
           <strong>Nazwa</strong>: <i>%%name%%</i> %%active%%
@@ -49,6 +58,6 @@ generator:
             attributes: { cols: 80, rows: 10 }
       edit:
         title: Edit gallery
-        display: [ name, description, active, Images, new ]
+        display: [ name, description, active, td_watermark_id, Images, new ]
       new:
         title: New gallery

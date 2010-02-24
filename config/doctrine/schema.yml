@@ -17,10 +17,6 @@ tdImage:
       notnull: true
     description:
       type: clob
-    horizontal:
-      type: boolean
-      notnull: true
-      default: true
   relations:
     Album:
       class: tdImageAlbum

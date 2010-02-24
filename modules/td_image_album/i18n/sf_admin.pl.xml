@@ -18,6 +18,16 @@
         <target>Lista galerii</target>
       </trans-unit>
 
+      <!-- Object/Batch Actions -->
+      <trans-unit>
+        <source>Activate</source>
+        <target>Aktywuj</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Deactivate</source>
+        <target>Deaktywuj</target>
+      </trans-unit>
+      
       <!-- Fields -->
       <trans-unit>
         <source>Created at</source>
@@ -26,6 +36,24 @@
       <trans-unit>
         <source>Updated at</source>
         <target>Zmodyfikowano</target>
+      </trans-unit>
+
+      <!-- Flashes -->
+      <trans-unit>
+        <source>The selected image albums have been activated successfully.</source>
+        <target>Wybrane albumy zdjęć zostały aktywowane.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>The selected image album has been activated successfully.</source>
+        <target>Wybrany album zdjęć gości został aktywowany.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>The selected image albums have been deactivated successfully.</source>
+        <target>Wybrane albumy zdjęć zostały deaktywowane.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>The selected image album has been deactivated successfully.</source>
+        <target>Wybrany album zdjęć został deaktywowany.</target>
       </trans-unit>
     </body>
   </file>
