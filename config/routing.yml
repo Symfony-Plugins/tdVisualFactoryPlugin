@@ -6,6 +6,20 @@ td_sample_image_show:
   url:   /image/:id
   param: { module: tdSampleImage, action: show }
 
+# ajax actions
+
+ajax_image_activate:
+  url:   /ajax-image-activate/:id
+  param: { module: td_image_album, action: activate }
+  requirements:
+    id: \d+
+
+ajax_image_deactivate:
+  url:   /ajax-image-deactivate/:id
+  param: { module: td_image_album, action: deactivate }
+  requirements:
+    id: \d+
+
 td_image:
   class: sfDoctrineRouteCollection
   options:

@@ -14,7 +14,7 @@ require_once dirname(__FILE__).'/../lib/td_image_albumGeneratorHelper.class.php'
 class td_image_albumActions extends autoTd_image_albumActions
 {
   /**
-   * Activates selected track albums.
+   * Activates selected image albums.
    *
    * @param sfWebRequest $request
    */
@@ -33,7 +33,7 @@ class td_image_albumActions extends autoTd_image_albumActions
   }
 
   /**
-   * Deactivates selected track albums.
+   * Deactivates selected image albums.
    *
    * @param sfWebRequest $request
    */
@@ -52,31 +52,28 @@ class td_image_albumActions extends autoTd_image_albumActions
   }
 
   /**
-   * Activates selected track album.
+   * Activates an album from admin generator list using AJAX.
    *
    * @param sfWebRequest $request
+   * @return Partial - generated partial enabling album deactivating (switch).
    */
-  public function executeListActivate(sfWebRequest $request)
+  public function executeActivate(sfWebRequest $request)
   {
-    $album = $this->getRoute()->getObject();
+    $album = Doctrine::getTable('tdImageAlbum')->findOneById($request->getParameter('id'));
     $album->activate();
-
-    $this->getUser()->setFlash('notice', 'The selected image album has been activated successfully.');
-    $this->redirect('@td_image_album');
+    return $this->renderPartial('td_image_album/ajax_deactivate', array('td_image_album' => $album));
   }
 
   /**
-   * Deactivates selected track album.
+   * Deactivates an album from admin generator list using AJAX.
    *
    * @param sfWebRequest $request
+   * @return Partial - generated partial enabling album activating (switch).
    */
-  public function executeListDeactivate(sfWebRequest $request)
+  public function executeDeactivate(sfWebRequest $request)
   {
-    $album = $this->getRoute()->getObject();
+    $album = Doctrine::getTable('tdImageAlbum')->findOneById($request->getParameter('id'));
     $album->deactivate();
-
-    $this->getUser()->setFlash('notice', 'The selected image album has been deactivated successfully.');
-
-    $this->redirect('@td_image_album');
+    return $this->renderPartial('td_image_album/ajax_activate', array('td_image_album' => $album));
   }
 }
