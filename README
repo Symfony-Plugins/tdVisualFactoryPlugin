@@ -33,6 +33,13 @@ Usage
   * The first of all custom image sizes is used as the thumbnail size in admin
     generator (image album editing with image list).
 
+  * To use the activate/deactivate AJAX interface in the backend td_image_album
+    module, remember to enable the __graphics__ module of the __tdCorePlugin__
+    inside your settings.yml file (see tdCorePlugin README).
+
+        [php]
+        enabled_modules: [ ..., graphics ]
+
 Configuration
 =============
 
@@ -64,13 +71,6 @@ __config/tdVisualFactoryPluginConfiguration.class.php__ file:
 
   * _td_visual_factory_mode_ - (String) external library use within the Visual
     Factory, can be either _gd_ (GD) or _im_ (Imagick).
-
-  * To use the activate/deactivate AJAX interface in the backend td_image_album
-    module, remember to enable the __graphics__ module of the __tdCorePlugin__
-    inside your settings.yml file (see tdCorePlugin README).
-
-        [php]
-        enabled_modules: [ ..., graphics ]
 
 Dependencies
 ============
