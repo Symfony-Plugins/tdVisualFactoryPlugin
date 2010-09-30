@@ -114,6 +114,7 @@ abstract class PlugintdImageAlbumForm extends BasetdImageAlbumForm
         if (!isset($this->scheduledForDeletion) || !in_array($form->getObject()->getId(), $this->scheduledForDeletion))
         {
           $form->saveEmbeddedForms($con);
+          $form->getObject()->setTdImageAlbumId($this->getObject()->getId());
           $form->getObject()->save($con);
         }
       }

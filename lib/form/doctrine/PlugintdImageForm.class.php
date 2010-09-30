@@ -31,6 +31,7 @@ abstract class PlugintdImageForm extends BasetdImageForm
   protected function manageHidden()
   {
     $this->widgetSchema['td_image_album_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['td_image_album_id'] = new sfValidatorPass;
   }
 
   protected function manageDelete()

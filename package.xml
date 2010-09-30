@@ -10,11 +10,11 @@
     <email>tomasz.ducin@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2010-09-04</date>
+  <date>2010-09-30</date>
   <time>11:00:00</time>
   <version>
-    <release>0.1.1</release>
-    <api>0.1.0</api>
+    <release>0.1.2</release>
+    <api>0.1.2</api>
   </version>
   <stability>
     <release>beta</release>
@@ -178,6 +178,24 @@
   </phprelease>
 
   <changelog>
+
+    <release>
+      <version>
+        <release>0.1.2</release>
+        <api>0.1.2</api>
+      </version>
+      <stability>
+        <release>beta</release>
+        <api>beta</api>
+      </stability>
+      <license uri="http://www.symfony-project.org/license">MIT license</license>
+      <date>2010-09-30</date>
+      <license>MIT</license>
+      <notes>
+        * fixed bug when adding images to a new album (thanks to Алексей Радюк)
+      </notes>
+    </release>
+
 
     <release>
       <version>
